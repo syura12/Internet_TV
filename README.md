@@ -140,11 +140,10 @@ CREATE TABLE broadcasts (
   FOREIGN KEY (channel_id) REFERENCES channels(id),
   FOREIGN KEY (episode_id) REFERENCES episodes(id)
 );
-```
+    ```
 </details>
   
-<details><summary>STEP3</summary>
-  ・サンプルデータの挿入
+<details><summary>サンプルデータの挿入</summary>
   <details><summary>鬼滅の刃とゲーム・オブ・スローンズに侵されたサンプル例</summary>
     ```
     -- channelsテーブルにデータを挿入
