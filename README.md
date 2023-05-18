@@ -1,5 +1,5 @@
 # Internet_TV
-step1 
+<details><summary>**step1**</summary> 
 
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT |
 | --- | --- | --- | --- | --- | --- |
@@ -70,3 +70,8 @@ step1
 - テーブル：broadcasts
   - 外部キー制約：channel_id に対して、channels テーブルの id カラムから設定
   - 外部キー制約：episode_id に対して、episodes テーブルの id カラムから設定
+</details>
+
+<details><summary>**STEP2**</summary>
+  
+
