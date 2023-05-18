@@ -85,8 +85,8 @@
   USE internet_TV;
   ```
   
-  <details><summary>・テーブル構築のSQL文</summary>
-  ```
+  <details><summary>テーブル構築のSQL文</summary>
+```
   CREATE TABLE channels (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(50) NOT NULL
@@ -140,7 +140,8 @@ CREATE TABLE broadcasts (
   FOREIGN KEY (channel_id) REFERENCES channels(id),
   FOREIGN KEY (episode_id) REFERENCES episodes(id)
 );
-    ```
+```
+
 </details>
   
 <details><summary>サンプルデータの挿入</summary>
