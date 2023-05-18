@@ -85,7 +85,7 @@
   USE internet_TV;
   ```
   
-  ・テーブル構築のSQL文
+  <details><summary>・テーブル構築のSQL文</summary>
   ```
   CREATE TABLE channels (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -141,7 +141,46 @@ CREATE TABLE broadcasts (
   FOREIGN KEY (episode_id) REFERENCES episodes(id)
 );
 ```
+</details>
   
+<details><summary>STEP3</summary>
+  ・サンプルデータの挿入
+  <details><summary>鬼滅の刃とゲーム・オブ・スローンズに侵されたサンプル例</summary>
+    ```
+    -- channelsテーブルにデータを挿入
+INSERT INTO channels (name) VALUES ('ドラマ1'), ('ドラマ2'), ('アニメ1'), ('アニメ2'), ('スポーツ'), ('ペット');
+
+-- genresテーブルにデータを挿入
+INSERT INTO genres (genre_name) VALUES ('アニメ'), ('映画'), ('ドラマ'), ('ニュース');
+
+-- programsテーブルにデータを挿入
+INSERT INTO programs (title, detail, program_length) VALUES 
+('鬼滅の刃', '人間の血を飲む“鬼”と、それを狩る“鬼狩り”の戦いを描くアクションアニメ', 24),
+('ゲーム・オブ・スローンズ', '七王国と呼ばれる地域を舞台に、数々の名家が玉座を巡って争うファンタジードラマ', 60);
+
+-- program_genresテーブルにデータを挿入
+INSERT INTO program_genres (program_id, genre_id) VALUES 
+(1, 1),  -- 鬼滅の刃はアニメジャンルに属する
+(2, 3);  -- ゲーム・オブ・スローンズはドラマジャンルに属する
+
+-- seasonsテーブルにデータを挿入
+INSERT INTO seasons (program_id, season_number) VALUES 
+(1, 1),  -- 鬼滅の刃のシーズン1
+(2, 1);  -- ゲーム・オブ・スローンズのシーズン1
+
+-- episodesテーブルにデータを挿入
+INSERT INTO episodes (season_id, episode_number, title, detail, duration, release_date, view_count) VALUES 
+(1, 1, '鬼滅の刃 第1話', '竈門炭治郎の日常と家族との絆を描く', 24, '2021-04-01', 10000),
+(1, 2, '鬼滅の刃 第2話', '鬼に襲われた炭治郎の運命が動き出す', 24, '2021-04-08', 9500),
+(2, 1, 'ゲーム・オブ・スローンズ 第1話', 'ウィンターフェルの大公エド・スタークの日常とその運命が描かれる', 60, '2011-04-17', 22000);
+
+-- broadcastsテーブルにデータを挿入
+INSERT INTO broadcasts (channel_id, episode_id, broadcast_time, view_count) VALUES 
+(1, 1, '2023-05-01 20
+```
+</details>
+  
+
   
   
 
