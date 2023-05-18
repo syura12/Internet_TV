@@ -57,5 +57,3 @@ step1
 | channel_id | bigint(20) | No | INDEX |  |  |
 | episode_id | bigint(20) | No | INDEX |  |  |
 | broadcast_time | datetime | No |  |  |  |
-
-以下の外部キー制約を
