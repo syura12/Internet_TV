@@ -86,40 +86,40 @@
   ```
   
   <details><summary>テーブル構築のSQL文</summary>
-```
+　　　　```
   CREATE TABLE channels (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(50) NOT NULL
-);
+　　　　);
 
-CREATE TABLE programs (
+　　　　CREATE TABLE programs (
   id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(100) NOT NULL,
   detail TEXT,
   program_length INT NOT NULL
-);
+　　　　);
 
-CREATE TABLE genres (
+　　　　CREATE TABLE genres (
   id INT AUTO_INCREMENT PRIMARY KEY,
   genre_name VARCHAR(50) NOT NULL
-);
+　　　　);
 
-CREATE TABLE program_genres (
+　　　　CREATE TABLE program_genres (
   id INT AUTO_INCREMENT PRIMARY KEY,
   program_id INT NOT NULL,
   genre_id INT NOT NULL,
   FOREIGN KEY (program_id) REFERENCES programs(id),
   FOREIGN KEY (genre_id) REFERENCES genres(id)
-);
+　　　　);
 
-CREATE TABLE seasons (
+　　　　CREATE TABLE seasons (
   id INT AUTO_INCREMENT PRIMARY KEY,
   program_id INT NOT NULL,
   season_number INT NOT NULL,
   FOREIGN KEY (program_id) REFERENCES programs(id)
-);
+　　　　);
 
-CREATE TABLE episodes (
+　　　　CREATE TABLE episodes (
   id INT AUTO_INCREMENT PRIMARY KEY,
   season_id INT NOT NULL,
   episode_number INT,
@@ -129,9 +129,9 @@ CREATE TABLE episodes (
   release_date DATE NOT NULL,
   view_count INT NOT NULL DEFAULT 0,
   FOREIGN KEY (season_id) REFERENCES seasons(id)
-);
+　　　　);
 
-CREATE TABLE broadcasts (
+　　　　CREATE TABLE broadcasts (
   id INT AUTO_INCREMENT PRIMARY KEY,
   channel_id INT NOT NULL,
   episode_id INT NOT NULL,
@@ -139,15 +139,15 @@ CREATE TABLE broadcasts (
   view_count INT NOT NULL DEFAULT 0,
   FOREIGN KEY (channel_id) REFERENCES channels(id),
   FOREIGN KEY (episode_id) REFERENCES episodes(id)
-);
-```
+　　　　　);
+　　　　```
 
 </details>
   
-<details><summary>サンプルデータの挿入</summary>
+サンプルデータの挿入
   <details><summary>鬼滅の刃とゲーム・オブ・スローンズに侵されたサンプル例</summary>
-    ```
-    -- channelsテーブルにデータを挿入
+```
+-- channelsテーブルにデータを挿入
 INSERT INTO channels (name) VALUES ('ドラマ1'), ('ドラマ2'), ('アニメ1'), ('アニメ2'), ('スポーツ'), ('ペット');
 
 -- genresテーブルにデータを挿入
