@@ -187,10 +187,81 @@ INSERT INTO broadcasts (channel_id, episode_id, broadcast_time, view_count) VALU
 (1, 1, '2023-05-01 20
     
 ```
-    
-4.クエリ
+  </details>
+ </details>
 
 <details><summary>STEP3</summary>
+  1.エピソード視聴数トップ3のエピソードタイトルと視聴数を取得するクエリ
+
+```
+SELECT e.title, SUM(b.view_count) as total_views
+FROM episodes AS e
+JOIN broadcasts AS b ON e.id = b.episode_id
+GROUP BY e.id
+ORDER BY total_views DESC
+LIMIT 3;  
+```
+  2.エピソード視聴数トップ3の番組タイトル、シーズン数、エピソード数、エピソードタイトル、視聴数を取得するクエリ
+  
+```
+SELECT p.title AS program_title, s.season_number, e.episode_number, e.title AS episode_title, SUM(b.view_count) as total_views
+FROM episodes AS e
+JOIN seasons AS s ON e.season_id = s.id
+JOIN programs AS p ON s.program_id = p.id
+JOIN broadcasts AS b ON e.id = b.episode_id
+GROUP BY e.id
+ORDER BY total_views DESC
+LIMIT 3;
+```
+  3.本日放送される全ての番組に対して、チャンネル名、放送開始時刻(日付+時間)、放送終了時刻、シーズン数、エピソード数、エピソードタイトル、エピソード詳細を取得するクエリ
+  
+```
+SELECT
+    c.name AS channel_name,
+    b.start_time,
+    DATE_ADD(b.start_time, INTERVAL e.duration MINUTE) AS end_time,
+    s.season_number,
+    e.episode_number,
+    e.title AS episode_title,
+    e.description AS episode_description
+FROM
+    broadcasts AS b
+JOIN
+    channels AS c ON b.channel_id = c.id
+JOIN
+    episodes AS e ON b.episode_id = e.id
+JOIN
+    seasons AS s ON e.season_id = s.id
+WHERE
+    DATE(b.start_time) = CURDATE()
+ORDER BY
+    b.start_time;
+```
+4.ドラマのチャンネルに対して、放送開始時刻、放送終了時刻、シーズン数、エピソード数、エピソードタイトル、エピソード詳細を本日から一週間分取得するクエリ
+  
+```
+SELECT
+    b.start_time,
+    DATE_ADD(b.start_time, INTERVAL e.duration MINUTE) AS end_time,
+    s.season_number,
+    e.episode_number,
+    e.title AS episode_title,
+    e.description AS episode_description
+FROM
+    broadcasts AS b
+JOIN
+    channels AS c ON b.channel_id = c.id
+JOIN
+    episodes AS e ON b.episode_id = e.id
+JOIN
+    seasons AS s ON e.season_id = s.id
+WHERE
+    c.name = 'ドラマ' AND
+    DATE(b.start_time) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
+ORDER BY
+    b.start_time;
+```
+  
 </details>
   
 
