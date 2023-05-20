@@ -58,7 +58,7 @@
 | episode_id | bigint(20) | | INDEX |  |  |
 | broadcast_time | datetime | |  |  |  |
 
-# 外部キー制約、ユニークキー制約に関して
+## 外部キー制約、ユニークキー制約に関して
 
 - テーブル：program_genres
   - 外部キー制約：program_id に対して、programs テーブルの id カラムから設定
@@ -73,80 +73,88 @@
 </details>
 
 <details><summary>STEP2</summary>
-  1.データベースの構築
-  　MySQL始動後下記コードにて新規データベースを作成、今回はinternet_TVというデータベースを作成
-  ```
-  CREATE DATABASE internet_TV;
-  ```
+1.データベースの構築
   
-  2.ステップ1で設計したテーブルを構築
-  ・下記コードにて使用するデータベースの選択
-  ```
-  USE internet_TV;
-  ```
+・MySQL始動後下記コードにて新規データベースを作成、今回はinternet_TVというデータベースを作成
   
-  <details><summary>テーブル構築のSQL文</summary>
-　　　　```
-  CREATE TABLE channels (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(50) NOT NULL
-　　　　);
+```
+CREATE DATABASE internet_TV;
+```
+  
+2.ステップ1で設計したテーブルを構築
+  
+・下記コードにて使用するデータベースの選択
+  
+```
+USE internet_TV;
+```
+  
+<details><summary>テーブル構築のSQL文</summary>
+  
+```
+CREATE TABLE channels (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(50) NOT NULL
+);
 
-　　　　CREATE TABLE programs (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(100) NOT NULL,
-  detail TEXT,
-  program_length INT NOT NULL
-　　　　);
+CREATE TABLE programs (
+id INT AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(100) NOT NULL,
+detail TEXT,
+program_length INT NOT NULL
+);
 
-　　　　CREATE TABLE genres (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  genre_name VARCHAR(50) NOT NULL
-　　　　);
+CREATE TABLE genres (
+id INT AUTO_INCREMENT PRIMARY KEY,
+genre_name VARCHAR(50) NOT NULL
+);
 
-　　　　CREATE TABLE program_genres (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  program_id INT NOT NULL,
-  genre_id INT NOT NULL,
-  FOREIGN KEY (program_id) REFERENCES programs(id),
-  FOREIGN KEY (genre_id) REFERENCES genres(id)
-　　　　);
+CREATE TABLE program_genres (
+id INT AUTO_INCREMENT PRIMARY KEY,
+program_id INT NOT NULL,
+genre_id INT NOT NULL,
+FOREIGN KEY (program_id) REFERENCES programs(id),
+FOREIGN KEY (genre_id) REFERENCES genres(id)
+);
 
-　　　　CREATE TABLE seasons (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  program_id INT NOT NULL,
-  season_number INT NOT NULL,
-  FOREIGN KEY (program_id) REFERENCES programs(id)
-　　　　);
+CREATE TABLE seasons (
+id INT AUTO_INCREMENT PRIMARY KEY,
+program_id INT NOT NULL,
+season_number INT NOT NULL,
+FOREIGN KEY (program_id) REFERENCES programs(id)
+);
 
-　　　　CREATE TABLE episodes (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  season_id INT NOT NULL,
-  episode_number INT,
-  title VARCHAR(100) NOT NULL,
-  detail TEXT,
-  duration INT NOT NULL,
-  release_date DATE NOT NULL,
-  view_count INT NOT NULL DEFAULT 0,
-  FOREIGN KEY (season_id) REFERENCES seasons(id)
-　　　　);
+CREATE TABLE episodes (
+id INT AUTO_INCREMENT PRIMARY KEY,
+season_id INT NOT NULL,
+episode_number INT,
+title VARCHAR(100) NOT NULL,
+detail TEXT,
+duration INT NOT NULL,
+release_date DATE NOT NULL,
+view_count INT NOT NULL DEFAULT 0,
+FOREIGN KEY (season_id) REFERENCES seasons(id)
+);
 
-　　　　CREATE TABLE broadcasts (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  channel_id INT NOT NULL,
-  episode_id INT NOT NULL,
-  broadcast_time DATETIME NOT NULL,
-  view_count INT NOT NULL DEFAULT 0,
-  FOREIGN KEY (channel_id) REFERENCES channels(id),
-  FOREIGN KEY (episode_id) REFERENCES episodes(id)
-　　　　　);
-　　　　```
+CREATE TABLE broadcasts (
+id INT AUTO_INCREMENT PRIMARY KEY,
+channel_id INT NOT NULL,
+episode_id INT NOT NULL,
+broadcast_time DATETIME NOT NULL,
+view_count INT NOT NULL DEFAULT 0,
+FOREIGN KEY (channel_id) REFERENCES channels(id),
+FOREIGN KEY (episode_id) REFERENCES episodes(id)
+);
+    
+```
 
 </details>
   
-サンプルデータの挿入
+3.サンプルデータの挿入
   <details><summary>鬼滅の刃とゲーム・オブ・スローンズに侵されたサンプル例</summary>
+    
 ```
+    
 -- channelsテーブルにデータを挿入
 INSERT INTO channels (name) VALUES ('ドラマ1'), ('ドラマ2'), ('アニメ1'), ('アニメ2'), ('スポーツ'), ('ペット');
 
@@ -177,8 +185,18 @@ INSERT INTO episodes (season_id, episode_number, title, detail, duration, releas
 -- broadcastsテーブルにデータを挿入
 INSERT INTO broadcasts (channel_id, episode_id, broadcast_time, view_count) VALUES 
 (1, 1, '2023-05-01 20
+    
 ```
+    
+4.クエリ
+
+<details><summary>STEP3</summary>
 </details>
+  
+
+
+  
+
   
 
   
