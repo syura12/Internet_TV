@@ -1,6 +1,8 @@
 # Internet_TV
 <details><summary>STEP1</summary> 
 
+テーブル1：channels
+
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT |
 | --- | --- | --- | --- | --- | --- |
 | id | bigint(20) | | PRIMARY |  | YES |
