@@ -48,7 +48,7 @@
 | title | varchar(100) | |  |  |  |
 | description | text | Yes |  |  |  |
 | duration | INT | |  |  |  |
-| release_date | date | |  |  |  |
+| release_date | DAte | |  |  |  |
 | view_count | INT | |  | 0 |  |
 
 テーブル7：broadcasts
@@ -58,7 +58,7 @@
 | id | INT | | PRIMARY |  | YES |
 | channel_id | INT | | INDEX |  |  |
 | episode_id | INT | | INDEX |  |  |
-| broadcast_time | datetime | |  |  |  |
+| broadcast_time | DATETIME | |  |  |  |
 
 ## 外部キー制約、ユニークキー制約に関して
 
