@@ -5,14 +5,14 @@
 
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT |
 | --- | --- | --- | --- | --- | --- |
-| id | bigint(20) | | PRIMARY |  | YES |
+| id | INT | | PRIMARY |  | YES |
 | name | varchar(100) |  |  |  |  |
 
 テーブル2：programs
 
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT |
 | --- | --- | --- | --- | --- | --- |
-| id | bigint(20) |  | PRIMARY |  | YES |
+| id | INT |  | PRIMARY |  | YES |
 | title | varchar(100) |  |  |  |  |
 | description | text | Yes |  |  |  |
 
@@ -20,44 +20,44 @@
 
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT |
 | --- | --- | --- | --- | --- | --- |
-| id | bigint(20) |  | PRIMARY |  | YES |
+| id | INT　　|  | PRIMARY |  | YES |
 | name | varchar(100) |  |  |  |  |
 
 テーブル4：program_genres
 
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT |
 | --- | --- | --- | --- | --- | --- |
-| program_id | bigint(20) | | PRIMARY |  |  |
-| genre_id | bigint(20) | | PRIMARY |  |  |
+| program_id | INT | | PRIMARY |  |  |
+| genre_id | INT | | PRIMARY |  |  |
 
 テーブル5：seasons
 
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT |
 | --- | --- | --- | --- | --- | --- |
-| id | bigint(20) | | PRIMARY |  | YES |
-| program_id | bigint(20) | | INDEX |  |  |
-| number | int(11) | |  |  |  |
+| id | INT | | PRIMARY |  | YES |
+| program_id | INT | | INDEX |  |  |
+| number | INT | |  |  |  |
 
 テーブル6：episodes
 
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT |
 | --- | --- | --- | --- | --- | --- |
-| id | bigint(20) | | PRIMARY |  | YES |
-| season_id | bigint(20) | Yes | INDEX |  |  |
-| number | int(11) | Yes |  |  |  |
+| id | INT | | PRIMARY |  | YES |
+| season_id | INT | Yes | INDEX |  |  |
+| number | INT | Yes |  |  |  |
 | title | varchar(100) | |  |  |  |
 | description | text | Yes |  |  |  |
-| duration | int(11) | |  |  |  |
+| duration | INT | |  |  |  |
 | release_date | date | |  |  |  |
-| view_count | bigint(20) | |  | 0 |  |
+| view_count | INT | |  | 0 |  |
 
 テーブル7：broadcasts
 
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT |
 | --- | --- | --- | --- | --- | --- |
-| id | bigint(20) | | PRIMARY |  | YES |
-| channel_id | bigint(20) | | INDEX |  |  |
-| episode_id | bigint(20) | | INDEX |  |  |
+| id | INT | | PRIMARY |  | YES |
+| channel_id | INT | | INDEX |  |  |
+| episode_id | INT | | INDEX |  |  |
 | broadcast_time | datetime | |  |  |  |
 
 ## 外部キー制約、ユニークキー制約に関して
